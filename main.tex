@@ -1,0 +1,517 @@
+\documentclass[%
+  aspectratio=169,
+  9pt,
+  USenglish,
+  titlegraphic, % store custom image to .images/titlegraphic
+  affiliationintitlepagehead,
+  %progressbar,
+  affiliation,
+]{beamer}
+
+\usetheme{TUM}
+
+\input{preamble.tex}
+
+
+\usetikzlibrary{external}
+\tikzexternalize[prefix=tikz/]
+\tikzexternalize
+\tikzexternaldisable
+
+\usepackage{tummath}
+
+\setbeamertemplate{blocks}[rounded][shadow=false]
+
+%	\end{itemize}
+%	
+%	Research Scope 
+%	\begin{itemize}
+%		\item Imbalance of Raster and Label Data
+%		\item Analogies to NLP
+%		\item Sequence modeling
+%	\end{itemize}
+%		
+%	Research Projects
+%	\begin{itemize}
+%		\item Crop Classification with Multi-temporal Land Cover Classification
+%		\item Early Classificaiton of Time Series
+%	\end{itemize}
+%		
+%		
+%\end{frame}
+
+
+\title{BreizhCrops}
+\subtitle{A Satellite Time Series Dataset for Crop Type Identification}
+\author[M. Rußwurm, S. Lefèvre, M.Körner]{Marc Rußwurm,\footnotemark[1] Sébastien Lefèvre,\footnotemark[2] Marco Körner\footnotemark[1]}
+\institute[TUM]{\footnotemark[1]Technical University of Munich, Remote Sensing Technology,  \\
+	\footnotemark[2] IRISA-Obelix University of South Brittany}
+\date{\today, Time Series Workshop ICML 2019}
+
+\begin{document}
+
+\begin{frame}[t]
+\titlepage
+\end{frame}
+
+
+\begin{frame}
+\frametitle{System Earth}
+
+\begin{columns}
+	
+	\column{.5\textwidth}
+	
+	{
+		%		The Earth is a complex system.
+		%		Only some components is observable by 
+		%		\begin{itemize}
+		%			\item satellite-based or
+		%			\item in-situ observations
+		%		\end{itemize}
+		%		
+		
+		%	\begin{equation*}\V{y} = f({\M{X}})\end{equation*}
+		%	partially observe the complex system Earth
+		\textbf{Partially measuring} System Earth
+		{\Huge
+			\begin{equation*}
+			\M{X} = \sat\left({\earth}\right)
+			\end{equation*}
+		}
+		
+		\vspace{1em}
+		\textbf{knowledge extraction} through pattern recognition and machine learning
+		
+		{\Huge\begin{equation*}\V{?} = f({\M{X}})\end{equation*}}
+	}
+	
+	\column{.5\textwidth}
+	
+	\begin{tikzpicture}[xscale=3, yscale=2]
+	\node(earth) at (0,0) {\includegraphics[width=7cm]{images/epicw1}};	
+	
+	\end{tikzpicture}
+	
+	
+\end{columns}
+\end{frame}
+
+
+%
+\begin{frame}
+\frametitle{Passive Optical Sensors}
+\begin{columns}
+	\column{.5\textwidth}
+	
+	
+	\begin{itemize}[itemsep=.5em]
+		\item<1-> Sensor measures \textbf{Digital Numbers} $\text{DN}(\lambda)$ for each band wavelength $\lambda$. 
+		\item<2-> \textbf{Digital Numbers} are normalized to \textbf{Radiance} 
+		$L(\lambda), \left[\frac{W}{\text{sr}m^1}\right]$ by gain and offset calibration.
+		\item<4-> Radiance is normalized to \textbf{top-of-atmosphere reflectance} $\rho(\lambda)$
+		\item<4-> \textbf{Bottom-of-atmosphere reflectances} are reconstructed using a functional model of the atmosphere.
+	\end{itemize}
+	
+	%	Radiance $R_\lambda$ from measured Digital Numbers via calibrated gain $\alpha$ and offset $\beta$
+	%	\begin{equation*}
+	%		L_\lambda = \alpha \text{DN}_\lambda + \beta, \left[\frac{W}{\text{sr}m^1}\right]
+	%	\end{equation*}
+	%	
+	%	top-of-atmosphere reflectance $\rho_\lambda$ as normalized Radiance $R_\lambda$ with solar 
+	%	\begin{equation*}
+	%	\rho_\lambda = \frac{L_\lambda}{\cos(\varphi_\text{sun})}
+	%	\frac{
+	%		\pi d^2
+	%	}
+	%	{
+	%		E_\text{sun}(\lambda)
+	%	}
+	%	\end{equation*}
+	%	
+	%	\vspace{1em}
+	%	
+	%	\begin{itemize}
+	%		\item measured radiance $L(\lambda)$
+	%		\item solar irradiance $E_\text{sun}(\lambda)$
+	%		\item solar zenith angle $\varphi_\text{sun}$
+	%		\item squared Earth-Sun distance $d$ in AU
+	%	\end{itemize}
+	
+	
+	\column{.5\textwidth}
+	
+	
+	\begin{tikzpicture}
+	
+	
+	%	\draw [black,dotted, fill=tumbluelight,domain=110:70] plot ({13*cos(\x)}, {13*sin(\x)-12.8});
+	\draw [fill=tumivory,domain=110:70] plot ({10*cos(\x)}, {10*sin(\x)-10});
+	%	\draw [fill=tumbluelight,domain=110:70] plot ({12*cos(\x)}f, {12*sin(\x)-10});
+	
+	
+	\node(sun) at (-2,2) {\includegraphics[width=10mm]{images/icons/sun}};
+	\node[rotate=130,anchor=center](sat) at (2,2) {\includegraphics[width=10mm]{images/icons/sat2}};
+	
+	\node(px) at ({10*cos(90)}, {10*sin(90)-10.1}){
+		\begin{tikzpicture}[xscale=.5,yscale=.25]
+		\draw[fill=tumbluelight] (0,0) -- (1,0) -- (2,1) -- (1,1) -- (0,0);
+		\end{tikzpicture}
+		%\includegraphics[width=5mm]{images/icons/house}
+	};
+	
+	\draw[-stealth] (sun) -- node[midway,sloped]{\wave} (px);
+	\draw[-stealth] (px) -- node[midway,sloped]{\wave} (sat);
+	
+	\visible<3->{\draw[-stealth] (sun) -- node[midway,sloped]{\wave} (sat);
+		\draw[draw=tumgray] (px) -- node[at end,left]{$\varphi_\text{sun}$} ++(0,1.4); 
+		\draw [draw=tumgray, domain=130:90] plot ({1*cos(\x)}, {1*sin(\x)});
+	}
+	
+	\node[above=.5em of sun]{$E_\text{sun}(\lambda)$};
+	\visible<1>{\node[above=4em of sat]{$DN(\lambda)$};}
+	\visible<2>{\node[above=4em of sat]{$L(\lambda)$};}
+	\visible<3>{\node[above=4em of sat]{$\rho_\text{toa}(\lambda)$};}
+	\visible<4>{\node[above=4em of sat]{$\rho_\text{boa}(\lambda)$};}
+	
+	%		\draw[red] (0,0) sin (1,2);
+	
+\end{tikzpicture}
+
+\end{columns}
+
+\end{frame}
+
+\newcommand{\rastergrid}{
+\begin{tikzpicture}
+% each layer
+\begin{scope}[scale=2]
+
+% raster size
+\def\d{0.7}		
+
+% distance layer
+\def\s{\d*5}
+
+\foreach \i in {1,...,6}
+{		
+\begin{scope}[
+yshift=\s*\i,every node/.append style={
+	yslant=0.5,xslant=-1},yslant=0.5,xslant=-1
+]
+%\draw[step=3.33mm] (0,0) grid (1,1);
+%\fill[black,fill opacity=.9] (0.333,0.333) rectangle (0.333,0.333);    	    	  
+
+\foreach \row in {0,...,2}{
+	\foreach \col in {0,...,2}{
+		\draw[tumblack, fill=tumblue!\pdfuniformdeviate 40,fill opacity=1,rounded corners=1] (\col*\d/3,\row*\d/3) rectangle (\col*\d/3+\d/3, \row*\d/3+\d/3);
+		%                 \draw[black, fill=black!\pdfuniformdeviate 40,fill opacity=1,rounded corners=1] (\col*\d/3,\row*\d/3) rectangle (\col*\d/3+\d/3, \row*\d/3+\d/3);
+	}
+}
+
+%\draw[step=3.33mm] (0,0) grid (1,1);
+%\fill[white,fill opacity=.9] (0,0) rectangle (1,1);
+\end{scope}
+}
+\end{scope}
+\end{tikzpicture}
+}
+
+
+%\begin{frame}
+%\frametitle{Spectral Band}
+%\end{frame}
+
+
+\newcommand{\myvec}[1]{\ensuremath{\begin{pmatrix}#1\end{pmatrix}}}
+\begin{frame}
+\frametitle{Spatial and Temporal Discretization}
+
+\begin{columns}
+\column{.5\textwidth}
+
+{
+\begin{equation*}
+\M{X} = \myvec{\rho_{\lambda_1} \\ \rho_{\lambda_2} \\ \dots \\ \rho_{\lambda_n}}
+\end{equation*}
+}
+
+
+
+Spectral reflectance of \textbf{spectral bands} disctretized on a \textbf{spatial grid}. Each grid cell is georeferenced by its Longitude $\Lambda$ and Latitude $\Phi$.
+Acquisitions in regular \textbf{temporal intervals}.
+
+\column{.5\textwidth}
+
+
+
+\begin{tikzpicture}
+
+%	\node(a){\includegraphics[width=3cm]{images/s2grid/1}};
+
+%	\draw[step=1cm,gray,very thin] (-2,-2) grid (6,6);
+
+
+\draw [fill=tumivory,domain=110:70] plot ({11*cos(\x)}, {11*sin(\x)-8.5});
+
+\begin{scope}[scale=1]
+
+% raster size
+\def\d{1}		
+
+% distance layer
+\def\s{\d*50}
+
+\node at (-1.7,2.4){$t_{i-1}$};
+\node at (-1.7,4.2){$t_i$};
+\node at (-1.7,6){$t_{i-1}$};
+
+\node at (1,1.9){$\Lambda$};
+\node at (-1,1.9){$\Phi$};
+
+%		\draw[step=1.0,black,thin] (-2,0) grid (2,5);
+
+
+\foreach \i in {1,...,3}
+{		
+
+\begin{scope}[
+yshift=\s*\i,every node/.append style={
+	yslant=0.5,xslant=-1},yslant=0.5,xslant=-1,scale=0.35
+]
+%\draw[step=3.33mm] (0,0) grid (1,1);
+%\fill[black,fill opacity=.9] (0.333,0.333) rectangle (0.333,0.333);    	    	  
+
+
+
+\foreach \row in {0,...,3}{
+	\foreach \col in {0,...,3}{
+		\draw[tumblack, fill=tumblue!\pdfuniformdeviate 40,fill opacity=1,rounded corners=1] (\col,\row) rectangle (\col+1, \row+1);
+		
+		\node[font=\tiny, text=tumblue] at (\col + 0.5,\row + 0.5) {$\V{x}$};
+		
+		%                 \draw[black, fill=black!\pdfuniformdeviate 40,fill opacity=1,rounded corners=1] (\col*\d/3,\row*\d/3) rectangle (\col*\d/3+\d/3, \row*\d/3+\d/3);
+	}
+}
+
+%\draw[step=3.33mm] (0,0) grid (1,1);
+%\fill[white,fill opacity=.9] (0,0) rectangle (1,1);
+\end{scope}
+}
+\end{scope}
+
+
+
+\end{tikzpicture}
+
+\end{columns}
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Multi-temporal Vegetation Monitoring}
+
+\begin{columns}
+	\column{.5\textwidth}
+	
+	\begin{tikzpicture}
+	\node[] at (0,0){\includegraphics[width=\textwidth]{images/Large1954_cerial_growth_stages}};
+	
+	%		\draw[step=1.0,black,thin, fill=none] (-2,-2) grid (2,2);
+	
+	\visible<-1>{\draw [fill=white, draw=none, opacity=0.8] (-0.8,-3) rectangle (2,2.5);}
+	\visible<-2>{\draw [fill=white, draw=none, opacity=0.8] (2,-3) rectangle (5,2.5);}
+	
+	\visible<1>{\node[rotate=190] at (-2.5,1.5){\includegraphics[width=15mm]{images/icons/sat2}};}
+	\visible<2>{\node[rotate=225] at (-2.5,1.5){\includegraphics[width=15mm]{images/icons/sat2}};}
+	\visible<3->{\node[rotate=260] at (-2.5,1.5){\includegraphics[width=15mm]{images/icons/sat2}};}
+	
+	
+	\visible<4->{\node at (-1.5,1.4) {\includegraphics[width=10mm]{images/cloud}};
+	}
+	
+	\end{tikzpicture}
+	
+	\column{.5\textwidth}
+	
+	{\Large
+		\only<1>{
+			\begin{equation*}
+			\V{y} = f_\text{phenology}(\V{X}_t)
+			\end{equation*}
+		}
+		\only<2>{
+			\begin{equation*}
+			\V{y} = f_\text{phenology}(\V{X}_t,\V{X}_{t+1})
+			\end{equation*}
+		}
+		\only<3>{
+			\begin{equation*}
+			\V{y} = f_\text{phenology}(\V{X}_t,\V{X}_{t+1},\V{X}_{t+2})
+			\end{equation*}
+		}
+	}
+	
+	
+	\vspace{2em}
+	
+	
+	\visible<1->{\includegraphics[width=.22\textwidth]{images/s2grid/1}}
+	\visible<2->{\includegraphics[width=.22\textwidth]{images/s2grid/2}}
+	\visible<3->{\includegraphics[width=.22\textwidth]{images/s2grid/3}}
+	\visible<4->{\includegraphics[width=.22\textwidth]{images/s2grid/4}}
+	
+	\vspace{1em}
+	
+	{\small 
+		Large, E. C. (1954). Growth stages in cereals illustration of the Feekes scale. Plant pathology, 3(4), 128-129.
+	}
+	
+	
+\end{columns}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{BreizhCrops Dataset (available by next week!)}
+
+\includegraphics[width=3cm]{images/map/europe}
+\includegraphics[width=3cm]{images/map/regions}
+\includegraphics[width=3cm]{images/map/breizh}
+\includegraphics[width=3cm]{images/map/parcels}
+
+\vspace{1em}
+
+\input{images/breizhcrops/example.tikz}
+\begin{columns}
+	\column{.5\textwidth}
+	
+	\textbf{corn grain and silage}
+	\dataexample{images/breizhcrops/example/6139251.csv}
+	
+	\column{.5\textwidth}
+	
+	\textbf{temporary meadows}
+	\dataexample{images/breizhcrops/example/3685593.csv}
+	
+\end{columns}
+
+\vspace{1em}
+
+\Large
+580k samples of Time Series $\M{X}$ and labels $\V{y}$. \Large \url{https://github.com/TUM-LMF/BreizhCrops}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Challenges and Impact}
+
+\Large
+
+\begin{columns}[t]
+
+\column{.5\textwidth}
+
+\visible<1->{
+	\textbf{Impact}
+	\vspace{1em}
+	
+	\begin{description}[itemsep=.5em]
+		\item large scale \textbf{real-world dataset}
+		\item effectively \textbf{unlimited data} (spatially and temporally)
+		\item \textbf{assessing generalization} over large regions
+		\item potential for further \textbf{vegetation characteristics} (drought indicator, early classification, crop yield)
+	\end{description}
+}
+
+\column{.5\textwidth}
+
+\visible<2->{
+	\textbf{Challenges}
+	\vspace{1em}
+	
+	\begin{description}[itemsep=.5em]
+		\item \textbf{Imbalanced} class \textbf{labels}
+		\item Classes with \textbf{similar characteristics}
+		\item Non-Gaussian noise induced by \textbf{clouds}
+		\item \textbf{Regional} \textbf{variations} in the class distributions
+		\item \textbf{Spatial} \textbf{autocorrelation}
+		\item \textbf{Irregular} temporal \textbf{sampling} distance
+		\item \textbf{Variable} \textbf{sequence} length
+	\end{description}
+}
+
+
+\end{columns}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Multi-Layer RNN baseline}
+
+\input{images/confmat.tikz}
+
+\begin{columns}
+
+\column{.5\textwidth}
+\textbf{Precision}
+
+\confmat{images/data/BreizhCrops_rnn/npy/confmat_flat.csv}{3}{1}
+
+\column{.5\textwidth}
+\textbf{Recall}
+
+\confmat{images/data/BreizhCrops_rnn/npy/confmat_flat.csv}{4}{1}
+
+\end{columns}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Transformer baseline}
+
+\input{images/confmat.tikz}
+
+\begin{columns}
+
+\column{.5\textwidth}
+\confmat{images/data/BreizhCrops_transformer/npy/confmat_flat.csv}{3}{1}
+
+\column{.5\textwidth}
+\confmat{images/data/BreizhCrops_transformer/npy/confmat_flat.csv}{4}{1}
+
+\end{columns}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Going Big...}
+
+\includegraphics[width=5cm]{images/EuroCrops}
+\includegraphics[width=5cm]{images/France}
+\includegraphics[width=4cm]{images/Bavaria}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Supported by Google Research Credits}
+
+\includegraphics[width=.3\textwidth]{images/google_research_credits}
+\includegraphics[width=.3\textwidth]{images/google}
+\includegraphics[width=.2\textwidth]{images/earth-engine-logo}
+%\includegraphics[width=3cm]{images/250px-Google-Cloud-Storage-Logo}
+%\includegraphics[width=3cm]{images/Google_Compute_Engine_logo}
+%\includegraphics[width=3cm]{images/google_cloud_sql}
+
+
+\end{frame}
+
+
+\end{document}
+
+
+

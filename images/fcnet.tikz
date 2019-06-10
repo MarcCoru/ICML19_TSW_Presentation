@@ -1,0 +1,68 @@
+\def\layersep{5mm}
+\def\ninput{2}
+\def\nhiddenone{3}
+%\def\nhiddentwo{3}
+%\def\nhiddenthree{3}
+\def\noutput{2}
+
+\begin{tikzpicture}[shorten >=1pt,->,draw=black!50, node distance=\layersep, xscale=1.5, yscale=.5]
+    \tikzstyle{every pin edge}=[<-,shorten <=1pt]
+    \tikzstyle{neuron}=[circle,fill=black!25,minimum size=10pt,inner sep=0pt]
+    \tikzstyle{input neuron}=[neuron, fill=tumbluelight];
+    \tikzstyle{output neuron}=[neuron, fill=tumgray];
+    \tikzstyle{hidden neuron}=[neuron, fill=tumblue];
+    \tikzstyle{annot} = [text width=4em, text centered]
+    % Draw the input layer nodes
+    \foreach \name / \y in {1,...,\ninput}
+    % This is the same as writing \foreach \name / \y in {1/1,2/2,3/3,4/4}
+        \node[input neuron] (I-\name) at (0,-\y) {};
+        
+    % Draw the hidden layer nodes
+    \foreach \name / \y in {1,...,\nhiddenone}
+        \path[yshift=0.5cm]
+            node[hidden neuron] (Hone-\name) at (\layersep,-\y cm) {};
+%            
+%    % Draw the hidden layer nodes
+%    \foreach \name / \y in {1,...,\nhiddentwo}
+%        \path[yshift=0.5cm]
+%        node[hidden neuron] (Htwo-\name) at (2*\layersep,-\y cm) {};
+%        
+%    % Draw the hidden layer nodes
+%    \foreach \name / \y in {1,...,\nhiddenthree}
+%       \path[yshift=0.5cm]
+%        node[hidden neuron] (Hthree-\name) at (3*\layersep,-\y cm) {};
+%                
+	\foreach \name / \y in {1,...,\noutput}
+	 % This is the same as writing \foreach \name / \y in {1/1,2/2,3/3,4/4}
+	 \node[output neuron] (O-\name) at (2*\layersep,-\y) {};
+
+    % Draw the output layer nodem
+%    \node[output neuron,pin={[pin edge={->}]right:Output}, right of=Htwo-2] (O) {};
+
+    % Connect every node in the input layer with every node in the
+    % hidden layer.
+    \foreach \source in {1,...,\ninput}
+        \foreach \dest in {1,...,\nhiddenone}
+            \path (I-\source) edge (Hone-\dest);
+%            
+%    \foreach \source in {1,...,\nhiddenone}
+%       \foreach \dest in {1,...,\nhiddentwo}
+%        \path (Hone-\source) edge (Htwo-\dest);
+%        
+%   \foreach \source in {1,...,\nhiddentwo}
+%      \foreach \dest in {1,...,\nhiddenthree}
+%        \path (Htwo-\source) edge (Hthree-\dest);
+        
+    \foreach \source in {1,...,\nhiddenone}
+      \foreach \dest in {1,...,\noutput}
+        \path (Hone-\source) edge (O-\dest);
+
+    % Connect every node in the hidden layer with the output layer
+%    \foreach \source in {1,...,\nhiddenone}
+%        \path (Htwo-\source) edge (O);
+
+    % Annotate the layers
+%    \node[annot,above of=H-1, node distance=1cm] (hl) {Hidden layer};
+%    \node[annot,above of=I-1] {$\VInput$};
+%    \node[annot,above of=O-1] {$\V{y}$};
+\end{tikzpicture}

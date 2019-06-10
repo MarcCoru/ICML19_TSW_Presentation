@@ -1,0 +1,52 @@
+\begin{tikzpicture}[node distance=1em and 2em]
+
+\node[](x0){$x_0$};
+\node[rnn, below=of x0](h0){\small$\theta$};
+\node[below=of h0](y0){$\yhat_0$};
+
+\node[left=of x0, anchor=east]{\small inputs $x_t$};
+\node[left=of h0, anchor=east]{\small model $f(\xuptot;\theta)$};
+\node[left=of y0, anchor=east]{\small predictions $y_t$};
+
+\node[right=of x0](x1){$x_1$};
+\node[rnn, below=of x1](h1){\small$\theta$};
+\node[below=of h1](y1){$\yhat_1$};
+
+\node[right=of x1](x2){$x_2$};
+\node[rnn, below=of x2](h2){\small$\theta$};
+\node[below=of h2](y2){$\yhat_2$};
+
+\node[right=of x2](x3){$x_3$};
+\node[rnn, below=of x3](h3){\small$\theta$};
+\node[below=of h3](y3){$\yhat_3$};
+
+\node[right=of x3](x4){$\dots$};
+\node[right=of h3](h4){};
+\node[right=of y3](y4){$\dots$};
+
+\draw[infer] (h0) -- (h1);
+\draw[infer] (h1) -- (h2);
+\draw[infer] (h2) -- (h3);
+\draw[infer] (h3) -- (h4);
+
+\visible<2->{
+	\node[below=of y0](t0){$y_0$};
+	\node[below=of y1](t1){$y_1$};
+	\node[below=of y2](t2){$y_2$};
+	\node[below=of y3](t3){$y_3$};
+	\node[left=of t0, anchor=east]{\small labels};
+}
+
+\foreach \i in {0,...,3}
+{
+	\draw[infer] (x\i) -- (h\i);
+	\draw[infer] (h\i) -- (y\i);
+	
+	\visible<2->{
+		\draw[stealth-stealth, grad] (y\i) -- node[midway,left](L\i){\small $\mathcal{L}_\i$} (t\i);
+	}
+	\visible<3->{
+		\draw[grad, -stealth](L\i) to [bend left=30] node[midway, left, text=colortrain]{$\frac{\partial\mathcal{L}_\i}{\partial\theta}$} (h\i);
+	}
+}
+\end{tikzpicture}

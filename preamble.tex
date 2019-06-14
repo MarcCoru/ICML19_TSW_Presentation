@@ -4,6 +4,8 @@
 \usepackage{media9}
 \usetikzlibrary{positioning}
 
+\usepackage{amsmath}
+\usepackage{booktabs}
 
 % change the camera position
 \tdplotsetmaincoords{45}{135}
@@ -126,19 +128,19 @@
 \colorlet{mediancolor}{tumorange}
 \colorlet{meancolor}{tumblue}
 
-%\colorlet{b1color}{tumdiagramaubergine}
-%\colorlet{b2color}{tumdiagramnavyblue}
-%\colorlet{b3color}{tumdiagramturquoise}
-%\colorlet{b4color}{tumdiagramgreen}
-%\colorlet{b5color}{tumdiagramlimegreen}
-%\colorlet{b6color}{tumdiagramyellow}
-%\colorlet{b7color}{tumdiagramsand}
-%\colorlet{b8color}{tumdiagramredorange}
-%\colorlet{b8Acolor}{tumdiagramred}
-%\colorlet{b9color}{tumblack}
-%\colorlet{b10color}{tumblue}
-%\colorlet{b11color}{tumdiagramdarkred}
-%\colorlet{b12color}{tumorange}
+\colorlet{b1color}{tumdiagramaubergine}
+\colorlet{b2color}{tumdiagramnavyblue}
+\colorlet{b3color}{tumdiagramturquoise}
+\colorlet{b4color}{tumdiagramgreen}
+\colorlet{b5color}{tumdiagramlimegreen}
+\colorlet{b6color}{tumdiagramyellow}
+\colorlet{b7color}{tumdiagramsand}
+\colorlet{b8color}{tumdiagramredorange}
+\colorlet{b8Acolor}{tumdiagramred}
+\colorlet{b9color}{tumblack}
+\colorlet{b10color}{tumblue}
+\colorlet{b11color}{tumdiagramdarkred}
+\colorlet{b12color}{tumorange}
 
 % atmospheric bands
 \colorlet{b1color}{tumblack}%tumdiagramaubergine
@@ -215,6 +217,12 @@
 \colorlet{colorclassthree}{tumorange}
 \colorlet{colorclassfour}{tumgray}
 
+\colorlet{frh01color}{tumgray}
+\colorlet{frh02color}{tumorange}
+\colorlet{frh03color}{tumblue}
+\colorlet{frh04color}{tumblack}
+
+
 
 %\usepackage{media9}
 
@@ -266,7 +274,7 @@ x={(0.5cm,0.5cm)}, y={(1cm,0cm)}, z={(0cm,1cm)}]
 		axis lines=left, 
 		enlargelimits, 
 		thick},
-	legend style = {font=\scriptsize\sansmath\sffamily, draw=none, rounded corners, fill opacity=.5, text opacity=1},
+	legend style = {font=\scriptsize\sansmath\sffamily, draw=none, rounded corners=0, fill opacity=.5, text opacity=1},
 	label style = {font=\scriptsize\sansmath\sffamily},
 	grid style={line width=.1pt, draw=gray!10},
 	major grid style={line width=.2pt,draw=tumgraylight},

@@ -1,0 +1,78 @@
+%\tikzsetnextfilename{input}
+
+\newcommand{\timeseries}[1]{
+\begin{tikzpicture}[baseline=-.25em]
+	
+	\tikzstyle{annot} = [font=\small\sffamily, text=tumblue]
+	\tikzstyle{point} = [thin, tumbluelight, shorten >= .25em, shorten <= .25em]
+	
+	% from /home/marc/projects/EV2019/images/example/tstop.txt
+%	\def\tstopv{0.6285714285714286}
+	\def\class{winter barley}
+	
+	\begin{groupplot}[
+	group style={
+		group name=my plots,
+		group size=1 by 1,
+		columns=1,
+		xlabels at=edge bottom,
+		xticklabels at=edge bottom,
+		vertical sep=1em,
+	},
+	ylabel near ticks,
+	ylabel style={font=\sffamily\small, rotate=-90},
+	width=.75\textwidth,
+	height=3.8cm,
+	axis x line=bottom,
+	axis y line=left,
+	enlarge x limits=0.01,
+	xtick={0,0.25,0.5,0.75,1},
+	xticklabels={Januar,April,Juni,September,Dezember},
+	ymajorgrids,
+	ymin=0, ymax=1.4
+	]
+	
+	
+	
+	\nextgroupplot[
+		no marks,  
+		ylabel={},
+		draw opacity=.8,
+		smooth=0.01,
+		legend columns=2,
+		legend style={at={(.5,1.1)},anchor=south, line width=1pt, fill=tumblue!10}
+		]
+		 
+	\addplot[b1color] table [x=t, y=B1, col sep=comma, forget plot] {images/example/#1};
+	\addplot[b9color] table [x=t, y=B9, col sep=comma, forget plot] {images/example/#1};
+	\addplot[b10color] table [x=t, y=B10, col sep=comma] {images/example/input.csv};
+	
+	\addplot[b11color] table [x=t, y=B11, col sep=comma, forget plot] {images/example/#1};
+	\addplot[b12color] table [x=t, y=B12, col sep=comma] {images/example/#1};
+	
+	\addplot[b5color] table [x=t, y=B5, col sep=comma, forget plot] {images/example/#1};
+	\addplot[b6color] table [x=t, y=B6, col sep=comma, forget plot] {images/example/#1};
+	\addplot[b7color] table [x=t, y=B7, col sep=comma, forget plot] {images/example/#1};
+	\addplot[b8color] table [x=t, y=B8, col sep=comma, forget plot] {images/example/#1};
+	\addplot[b8Acolor] table [x=t, y=B8A, col sep=comma] {images/example/#1};
+		
+	\addplot[b2color] table [x=t, y=B2, col sep=comma, forget plot] {images/example/#1};
+	\addplot[b3color] table [x=t, y=B3, col sep=comma, forget plot] {images/example/#1};
+	\addplot[b4color] table [x=t, y=B4, col sep=comma] {images/example/#1};
+%	
+	\legend{3 atmospheric, 2 short-wave infrared, 5 near infrared, 3 visible bands}
+	
+%	\addplot[thick,colorclassone, name path=y1] table[x=t, y=y1]{\mydata};
+%	\addplot[thick,colorclasstwo, name path=y2] table[x=t, y=y2]{\mydata};
+%	\addplot[thick,colorclassthree, name path=y3] table[x=t, y=y3]{\mydata};
+%	\addplot[thick,colorclassfour, name path=y4] table[x=t, y=y4]{\mydata};
+	%\addplot[colorblue!20] fill between[of = y1 and axis];
+	%\addplot[colorhgray!20] fill between[of = y2 and axis];
+	%\addplot[colorgreen!20] fill between[of = y3 and axis];
+	%\addplot[colororange!20] fill between[of = y4 and axis];
+	
+	
+	\end{groupplot}
+	
+	\end{tikzpicture}
+}

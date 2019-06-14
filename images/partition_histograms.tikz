@@ -1,0 +1,49 @@
+%\tikzsetnextfilename{partition_histograms}
+\begin{tikzpicture}
+  \begin{axis}[
+  		thick,
+        ybar, 
+        axis on top,
+        title={},
+        height=7cm, width=.9\textwidth,
+        bar width=.3em,
+        ymajorgrids, 
+        tick align=outside,
+%        major grid style={draw=tumwhite},
+%        enlarge y limits={value=.1,upper},
+        ymin=0,
+%        axis x line*=bottom,
+%        axis y line*=left,
+        ymode=log,
+        axis line style={opacity=1, thin},
+%        tickwidth=1pt,
+        enlarge x limits=.05,
+        ylabel={Parcels},
+        ylabel style={yshift=0em},
+%        xlabel style={yshift=2em},
+%        x tick label style={yshift=-1em},
+        xtick={0,2,...,12},
+        xticklabels={barley, corn\phantom{g}, fallow, orchards, permanent meadows, rapeseed, vegetables},
+        every x tick/.style={text height=1ex},
+        extra x ticks={1,3,...,11},
+        extra x tick labels={wheat, fodder, miscellaneous, cereals, protein crops, temporary meadows},
+        every extra x tick/.style={major tick length=1em,
+        	text height=1ex}
+%        tick label style={rotate=20,anchor=east}
+%        x tick label style={align=right,text width=3.5cm},
+%       xticklabel style = {rotate=90,anchor=east},
+       %nodes near coords={
+       % \tiny \pgfmathprintnumber[precision=0]{\pgfplotspointmeta}
+       %}
+    ]
+    
+    \addplot [draw=none, fill=frh01color] table[x=id,y=frh01, col sep=comma] {images/counts.csv};
+    \addplot [draw=none, fill=frh02color] table[x=id,y=frh02, col sep=comma] {images/counts.csv};
+    \addplot [draw=none, fill=frh03color] table[x=id,y=frh03, col sep=comma] {images/counts.csv};
+    \addplot [draw=none, fill=frh04color] table[x=id,y=frh04, col sep=comma] {images/counts.csv};
+
+    \legend{Côtes-d’Armor {(FRH01)},Finistère {(FRH02)},Ille-et-Vilaine {(FRH03)},Morbihan {(FRH04)}}
+  \end{axis}
+  
+%  \node at (20,2){\includegraphics[width=8cm]{images/map/regions}};
+  \end{tikzpicture}

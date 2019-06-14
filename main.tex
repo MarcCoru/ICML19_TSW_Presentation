@@ -54,49 +54,91 @@
 \titlepage
 \end{frame}
 
-
 \begin{frame}
-\frametitle{System Earth}
-
-\begin{columns}
-	
-	\column{.5\textwidth}
+	\frametitle{Disclaimer}
 	
 	{
-		%		The Earth is a complex system.
-		%		Only some components is observable by 
-		%		\begin{itemize}
-		%			\item satellite-based or
-		%			\item in-situ observations
-		%		\end{itemize}
-		%		
-		
-		%	\begin{equation*}\V{y} = f({\M{X}})\end{equation*}
-		%	partially observe the complex system Earth
-		\textbf{Partially measuring} System Earth
-		{\Huge
-			\begin{equation*}
-			\M{X} = \sat\left({\earth}\right)
-			\end{equation*}
-		}
-		
-		\vspace{1em}
-		\textbf{knowledge extraction} through pattern recognition and machine learning
-		
-		{\Huge\begin{equation*}\V{?} = f({\M{X}})\end{equation*}}
+	\Huge
+	
+	This is a dataset $\mathcal{D} = (\M{X},\V{y})^i$
 	}
-	
-	\column{.5\textwidth}
-	
-	\begin{tikzpicture}[xscale=3, yscale=2]
-	\node(earth) at (0,0) {\includegraphics[width=7cm]{images/epicw1}};	
-	
-	\end{tikzpicture}
+
 	
 	
-\end{columns}
+	\normalsize
+	
+	
+	$\M{X} = (\V{x}_0, \V{x}_1, \dots, \V{x}_T)^T$
+	
+	\begin{itemize}
+		\item covering a comparatively unknown field of application
+		\item with global impact
+		\item in need of state-of-the-art methods
+		\item with a series of challenging real-world problems
+		\item and but essentially unlimited quantities of (input) data.
+	\end{itemize}
 \end{frame}
 
+
+{\setbeamercolor{background canvas}{bg=black}
+	\begin{frame}[plain]
+	
+	\vfill
+	\Huge\color{white}
+	\begin{center}
+		\begin{columns}
+			\column{.5\textwidth}
+			\vspace{7em}
+			
+			\hfill 
+			Earth Observation
+			\column{.5\textwidth}
+			
+			\includegraphics[width=5cm]{images/epic1}
+			%\includegraphics[width=7cm]{images/fdl}
+		\end{columns}
+	\end{center}
+	
+	\vfill
+\end{frame}
+}
+
+\begin{frame}
+	\frametitle{Structure}
+	
+	Earth Observation
+	\begin{itemize}
+		\item Type of Data
+		\item Application
+	\end{itemize}
+
+	Dataset
+	\begin{itemize}
+		\item Region of Interest
+		\item Input Data
+		\item Label Data
+	\end{itemize}
+
+	Baseline Results
+	\begin{itemize}
+		\item Long Short-Term Memory
+		\item Transformer Encoder
+	\end{itemize}
+
+	Challenges \\
+	Outlook
+\end{frame}
+
+\begin{frame}
+	\frametitle{Satellite Data}
+	
+	\begin{itemize}
+		\item Satellite data $\V{x}_t$ is acquired at regular temporal intervals $t = (1,2,\dots, T)$
+		\item measures surface reflectances at a variety of wave lengths
+		\item 
+	\end{itemize}
+	
+\end{frame}
 
 %
 \begin{frame}
@@ -232,7 +274,7 @@ yshift=\s*\i,every node/.append style={
 
 {
 \begin{equation*}
-\M{X} = \myvec{\rho_{\lambda_1} \\ \rho_{\lambda_2} \\ \dots \\ \rho_{\lambda_n}}
+\V{x}_t = \myvec{\rho_{\lambda_1} \\ \rho_{\lambda_2} \\ \dots \\ \rho_{\lambda_n}}
 \end{equation*}
 }
 
@@ -309,6 +351,50 @@ yshift=\s*\i,every node/.append style={
 
 \end{frame}
 
+
+{\setbeamercolor{background canvas}{bg=tumbluedark}
+	\begin{frame}[plain]
+	
+	\vfill
+	\Huge\color{white}
+	\begin{center}
+		\begin{columns}
+			\column{.5\textwidth}
+			\vspace{7em}
+			
+			\hfill 
+			Vegetation Monitoring
+			\column{.5\textwidth}
+			
+%			\includegraphics[width=5cm]{images/epic1}
+			%\includegraphics[width=7cm]{images/fdl}
+		\end{columns}
+	\end{center}
+	
+	\vfill
+\end{frame}
+}
+
+\begin{frame}
+
+	\frametitle{Photosynthesis}
+%	
+%	Photosynthesis
+	
+	\centering
+	\begin{tikzpicture}
+		\node(in){$6{\text{CO}}_{2}+6{\text{H}}_{2}\text{O}$};
+		\node[right=of in, label={light absorbtion $\Delta \V{x}$}](arrow){$\to$};
+		\node[right=of arrow]{${\text{C}}_{\text{6}}{\text{H}}_{\text{12}}{\text{O}}_{\text{6}}+{\text{6O}}_{\text{2}}$};
+		
+		
+	\end{tikzpicture}
+%	
+%	\begin{equation*}
+%	6{\text{CO}}_{2}+6{\text{H}}_{2}\text{O}\to 
+%	\end{equation*}
+\end{frame}
+
 \begin{frame}
 \frametitle{Multi-temporal Vegetation Monitoring}
 
@@ -372,6 +458,267 @@ yshift=\s*\i,every node/.append style={
 \end{columns}
 \end{frame}
 
+\begin{frame}
+	\frametitle{Highly underconstrained Problem!}
+	
+	\begin{itemize}
+		\item mixed signals 
+		\item a variety of partly observed biochemical processes
+		\item irregular data acquisition patterns
+		\item Measurements on pixels of 10-60m ground resolution 
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Problem Definition}
+	\Large
+	
+	\visible<1->{Learn the vegetation model}
+	\visible<2->{from globally available satellite data $\M{x}$}
+	
+	\visible<3>{reframing as \textbf{supervised classification} of vegetation $\V{y} = (y_\text{corn},y_\text{cereals},\dots)^T$}
+	
+
+	\vspace{2em}
+
+	\centering
+	{\Huge
+	\begin{tikzpicture}[node distance=0em]
+		\visible<3->{\node(y){\V{y}};}
+		\visible<3->{\node[right=of y](equals){$=$};}
+		\node[right=of equals](f){$f_\text{vegetation}$};
+		\visible<2->{\node[right=of f](x){$(\M{X})$};}
+		
+%		
+%		\visible<4->{\node[below left=of y, text width=5cm, font=\normalsize]{
+%		
+%			\begin{itemize}\setlength\itemsep{.1em}
+%			\item European Common Agricultural Policy (CAP)
+%			\item collected yearly in entire Europe
+%			\item slowly made publicly available
+%			\item today, gathered on a national basis
+%			\item in future harmonized within Europe's INSPIRE directive
+%			\end{itemize}
+%			
+%		}; } 
+%		
+%		\node[below right=of x, text width=3cm]{
+%%			$
+%%			\V{x}_t = 
+%%			\begin{pmatrix}
+%%			\rho_{\text{blue}_t} \\
+%%			\rho_{\text{green}_t} \\
+%%			\dots \\
+%%			\rho_{\text{infrared}_t} \\
+%%			\end{pmatrix}$};
+%			satellite data available at large scale
+%
+%		};
+	\end{tikzpicture}
+}
+	\vspace{1em}
+
+	
+	
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Intuition}
+
+\Large 
+
+\begin{columns}[t]
+	
+\column{.5\textwidth}
+%\visible<4->{
+%	\raggedright
+%	\textbf{Intuition:}
+	\vspace{2em}
+
+	\Large
+	A \textbf{discriminative classification model} must \textbf{internalize} a \textbf{learned model for the vegetation}
+	
+	\vspace{2em}
+	\centering\Large
+	\begin{tikzpicture}[node distance=0em]
+	{\node(y){\V{y}};}
+	{\node[right=of y](equals){$=$};}
+	\node[right=of equals](f){$f_\text{vegetation}$};
+	{\node[right=of f](x){$(\M{X})$};}	
+	\end{tikzpicture}
+%}
+
+\column{.5\textwidth}
+similar to Vegetation Model of Cereals (Large et al., 1954)
+%\centering 
+\vspace{1em}
+
+\includegraphics[width=\textwidth]{images/Large1954_cerial_growth_stages}
+
+\vspace{0em}
+
+\small Large, E. C. (1954). Growth stages in cereals illustration of the Feekes scale. Plant pathology, 3(4), 128-129.
+
+
+\end{columns}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{This Dataset}
+	
+	\Huge
+	\begin{tikzpicture}[node distance=0em]
+	{\node(y){\V{y}};}
+	{\node[right=of y](equals){$=$};}
+	\node[right=of equals](f){$f_\text{vegetation}$};
+	{\node[right=of f](x){$(\M{X})$};}	
+	\end{tikzpicture}
+	
+\end{frame}
+
+\input{images/input.tikz}
+
+
+
+\begin{frame}
+	\frametitle{Label Data $\V{y}$}
+	
+	\begin{columns}
+		
+	\column{.5\textwidth}
+	
+	\begin{itemize}\setlength\itemsep{.1em}
+		\item European Common Agricultural Policy (CAP)
+		\item collected yearly in entire Europe
+		\item slowly made publicly available
+		\item today, gathered on a national basis
+		\item in future harmonized within Europe's INSPIRE directive
+	\end{itemize}
+	$
+	\V{y} = \begin{pmatrix}
+		y_\text{corn} \\ 
+		y_\text{meadows} \\
+		y_{B3} \\
+		y_{B4} \\
+	\end{pmatrix}
+	$
+	\column{.5\textwidth}
+	\includegraphics[width=\textwidth]{images/map/breizh}
+	
+	
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Satellite Time Series $\M{x}$}
+
+\begin{columns}
+	
+	
+	\column{.5\textwidth}
+	
+	\includegraphics[width=\textwidth]{images/sentinel2}
+	
+	\column{.5\textwidth}
+	
+	\begin{equation*}
+	\V{x}_t = \begin{pmatrix}
+	\rho_{B1} \\ 
+	\rho_{B2} \\
+	\rho_{B3} \\
+	\rho_{B4} \\
+	\rho_{B5} \\
+	\rho_{B6} \\
+	\rho_{B7} \\
+	\rho_{B8} \\
+	\rho_{B8A} \\
+	\rho_{B9} \\
+	\rho_{B10} \\
+	\rho_{B11} \\
+	\rho_{B12}
+	\end{pmatrix}
+	%	\begin{matrix}
+	%%	\leftarrow \text{ultra-violett} \\ 
+	%%	\leftarrow \text{blue} \\
+	%%	\leftarrow \text{green} \\
+	%%	\leftarrow \text{red} \\
+	%%	\leftarrow \text{near infrared} \\
+	%%	\leftarrow \text{near infrared} \\
+	%%	\leftarrow \text{near infrared} \\
+	%%	\leftarrow \text{near infrared} \\
+	%%	\leftarrow \text{near infrared} \\
+	%%	\leftarrow \text{water vapour} \\
+	%%	\leftarrow \text{detect cirrus clouds} \\
+	%%	\leftarrow \text{short-wave infrared} \\
+	%%	\leftarrow \text{short-wave infrared}
+	%%\multirow{3}{c}{\overbrace{\rule{1.5cm}{0pt}}^{N(k,d)-d}}
+	%\multirow{5}{*}{fractionals}
+	%	\end{matrix}
+	\end{equation*}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Examples}
+\centering
+%\externalize{beispiel}{%
+\begin{tikzpicture}[node distance=.1em]
+%	\visible<1>{
+%	\node[font=\huge](veg) at (0,0){Vegetationsmodell};
+%	\node[right=0em of veg](input){$\left(\satimage{1},\satimage{1},\satimage{3}\right)$};
+%	}
+\node[font=\huge, label=$f$](equals){$\leftarrow$};
+%	\visible<2>{\node[right=0em of equals](input){\timeseries{input.csv}};}
+\visible<1>{\node[right=0em of equals](input){\timeseries{prep74526670.csv}};}
+\visible<2>{\node[right=0em of equals](input){\timeseries{prep77770412.csv}};}
+
+\visible<1>{\node[left= of equals, font=\huge](probas){meadows};}
+\visible<2>{\node[left= of equals, font=\huge](probas){fallow (no crop)};}
+
+
+\end{tikzpicture}%
+%}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Region of Interest}
+	
+	\emph{Nomenclature des unités territoriales statistiques (NUTS)} as European standard of administrative Boundaries. NUTS-0 countries, NUTS-1 states, NUTS-2 districts, NUTS-3 municipalities. Add-on: All European Statistics (Eurostats) are collected in these administrative divisions.
+	
+	\begin{columns}
+		\column{.5\textwidth}
+			\only<1>{
+			\includegraphics[width=.9\textwidth]{images/map/europe}
+			NUTS-2 division of {\color{tumorange} Brittany (Breizh)} in Europe 
+			}
+			\only<2>{
+				Field Parcels
+				\begin{tabular}{lrr}
+				\toprule
+				Departements & NUTS-3 & Parcels \\
+				\cmidrule(lr){1-1}\cmidrule(lr){2-2}\cmidrule(lr){3-3}
+				%			\midrule
+				Morbihan & FRH04 & 158522 \\
+				Côtes-d’Armor & FRH01 & 221095 \\
+				Finistère & FRH02 & 180565\\
+				Ille-et-Vilaine & FRH03 & 207993\\
+				\\
+				\midrule
+				Brittany & FRH0 & 768175\\
+				\bottomrule
+			\end{tabular}
+			}
+		
+		\column{.5\textwidth}
+			\includegraphics[width=.9\textwidth]{images/map/regions}
+			NUTS-3 regions within Brittany, France
+		
+	\end{columns}
+	
+\end{frame}
 
 \begin{frame}
 \frametitle{BreizhCrops Dataset (available by next week!)}
@@ -383,17 +730,17 @@ yshift=\s*\i,every node/.append style={
 
 \vspace{1em}
 
-\input{images/breizhcrops/example.tikz}
+%\input{images/breizhcrops/example.tikz}
 \begin{columns}
 	\column{.5\textwidth}
 	
-	\textbf{corn grain and silage}
-	\dataexample{images/breizhcrops/example/6139251.csv}
-	
-	\column{.5\textwidth}
-	
-	\textbf{temporary meadows}
-	\dataexample{images/breizhcrops/example/3685593.csv}
+%	\textbf{corn grain and silage}
+%	\dataexample{images/breizhcrops/example/6139251.csv}
+%	
+%	\column{.5\textwidth}
+%	
+%	\textbf{temporary meadows}
+%	\dataexample{images/breizhcrops/example/3685593.csv}
 	
 \end{columns}
 
@@ -403,6 +750,202 @@ yshift=\s*\i,every node/.append style={
 580k samples of Time Series $\M{X}$ and labels $\V{y}$. \Large \url{https://github.com/TUM-LMF/BreizhCrops}
 
 \end{frame}
+
+{\setbeamercolor{background canvas}{bg=tumbluedark}
+	\begin{frame}[plain]
+	
+	\vfill
+	\Huge\color{white}
+	\begin{center}
+		\begin{columns}
+			\column{.5\textwidth}
+			\vspace{7em}
+			
+			\hfill 
+			Baseline Results
+			\column{.5\textwidth}
+			
+			%			\includegraphics[width=5cm]{images/epic1}
+			%\includegraphics[width=7cm]{images/fdl}
+		\end{columns}
+	\end{center}
+	
+	\vfill
+\end{frame}
+}
+
+\begin{frame}
+	\frametitle{LSTM}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Transformer}
+\end{frame}
+
+
+{\setbeamercolor{background canvas}{bg=tumbluedark}
+	\begin{frame}[plain]
+	
+	\vfill
+	\Huge\color{white}
+	\begin{center}
+		\begin{columns}
+			\column{.5\textwidth}
+			\vspace{7em}
+			
+			\hfill 
+			Challenges
+			\column{.5\textwidth}
+			
+			%			\includegraphics[width=5cm]{images/epic1}
+			%\includegraphics[width=7cm]{images/fdl}
+		\end{columns}
+	\end{center}
+	
+	\vfill
+\end{frame}
+}
+
+
+
+\begin{frame}
+\frametitle{Challenge 1: Clouds adding a positive bias}
+
+\includegraphics[width=2cm]{images/s2grid/1}
+\includegraphics[width=2cm]{images/s2grid/2}
+\includegraphics[width=2cm]{images/s2grid/3}
+\includegraphics[width=2cm]{images/s2grid/4}
+
+\input{images/example.tikz}
+\examplecorn
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Challenge : Imbalanced class labels}
+
+\input{images/partition_histograms.tikz}
+\end{frame}
+
+\begin{frame}
+\frametitle{Challenge: Classes with similar characteristics}
+
+Multi-Layer RNN baseline
+\input{images/confmat.tikz}
+
+\begin{columns}
+	
+	\column{.5\textwidth}
+	\textbf{Precision}
+	
+	\confmat{images/data/BreizhCrops_rnn/npy/confmat_flat.csv}{3}{1}
+	
+	\column{.5\textwidth}
+	\textbf{Recall}
+	
+	\confmat{images/data/BreizhCrops_rnn/npy/confmat_flat.csv}{4}{1}
+	
+\end{columns}
+
+\end{frame}
+
+%
+%\begin{frame}
+%\frametitle{Transformer baseline}
+%
+%\input{images/confmat.tikz}
+%
+%\begin{columns}
+%
+%\column{.5\textwidth}
+%\confmat{images/data/BreizhCrops_transformer/npy/confmat_flat.csv}{3}{1}
+%
+%\column{.5\textwidth}
+%\confmat{images/data/BreizhCrops_transformer/npy/confmat_flat.csv}{4}{1}
+%
+%\end{columns}
+%
+%\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Challenge: Regional variations in the class distributions}
+
+
+
+\begin{tikzpicture}
+	\node(o){\includegraphics[width=2.5cm]{images/orchards}};
+	
+	\coordinate[yshift=2.55cm](co2) at (o);
+	\draw ($ (co2)+(-1cm,0) $) -- ($ (co2)+(1cm,0) $) node[name=labblue, pos=1.1, anchor=west]{1224 parcels};
+	
+	\coordinate[yshift=-.43cm](co) at (o);
+	\draw ($ (co)+(-1cm,0) $) -- ($ (co)+(1cm,0) $) node[name=laborange, pos=1.1, anchor=west]{350 parcels};
+	
+	\node[right=4cm of o](regions){\includegraphics[width=8cm]{images/map/regions}};
+	
+	\draw (laborange) -- ($ (regions)+(-2cm,.5cm) $);
+	\draw (labblue) -- ($ (regions)+(3cm,0cm) $);
+	
+\end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Challenge: Regional variations in the class distributions}
+	\framesubtitle{continued}
+
+	\centering
+	
+\end{frame}
+
+\begin{frame}
+\frametitle{Challenge: Irregular sampling distance.}
+
+\includegraphics[width=\textwidth]{images/days_between_acquisitions}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Challenge: Variable sequence length}
+\includegraphics[width=\textwidth]{images/sequencelengths}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Spatial autocorrelation}
+	
+	\includegraphics[width=11cm]{images/map/breizh}
+	
+	
+\end{frame}
+
+{\setbeamercolor{background canvas}{bg=tumbluedark}
+	\begin{frame}[plain]
+	
+	\vfill
+	\Huge\color{white}
+	\begin{center}
+		\begin{columns}
+			\column{.5\textwidth}
+			\vspace{7em}
+			
+			\hfill 
+			Summary and Outlook
+			\column{.5\textwidth}
+			
+			%			\includegraphics[width=5cm]{images/epic1}
+			%\includegraphics[width=7cm]{images/fdl}
+		\end{columns}
+	\end{center}
+	
+	\vfill
+\end{frame}
+}
+
 
 
 \begin{frame}
@@ -447,46 +990,6 @@ yshift=\s*\i,every node/.append style={
 \end{columns}
 
 \end{frame}
-
-
-\begin{frame}
-\frametitle{Multi-Layer RNN baseline}
-
-\input{images/confmat.tikz}
-
-\begin{columns}
-
-\column{.5\textwidth}
-\textbf{Precision}
-
-\confmat{images/data/BreizhCrops_rnn/npy/confmat_flat.csv}{3}{1}
-
-\column{.5\textwidth}
-\textbf{Recall}
-
-\confmat{images/data/BreizhCrops_rnn/npy/confmat_flat.csv}{4}{1}
-
-\end{columns}
-
-\end{frame}
-
-\begin{frame}
-\frametitle{Transformer baseline}
-
-\input{images/confmat.tikz}
-
-\begin{columns}
-
-\column{.5\textwidth}
-\confmat{images/data/BreizhCrops_transformer/npy/confmat_flat.csv}{3}{1}
-
-\column{.5\textwidth}
-\confmat{images/data/BreizhCrops_transformer/npy/confmat_flat.csv}{4}{1}
-
-\end{columns}
-
-\end{frame}
-
 
 \begin{frame}
 \frametitle{Going Big...}

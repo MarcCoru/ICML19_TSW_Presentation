@@ -180,7 +180,7 @@ IRISA-Obelix, University of South Brittany\footnotemark[2]}
 	
 	
 	\begin{itemize}[itemsep=.5em]
-		\item<1-> Sensor measures \textbf{Digital Numbers} $\text{DN}(\lambda)$ for each band wavelength $\lambda$. 
+		\item<1-> Sensor measures \textbf{Digital Numbers} $\text{DN}(\lambda)$ for each wavelength $\lambda$. 
 		\item<2-> \textbf{Digital Numbers} are normalized to \textbf{Radiance} 
 		$L(\lambda), \left[\frac{W}{\text{sr}m^2}\right]$ by gain and offset calibration.
 		\item<3-> Radiance is normalized to \textbf{top-of-atmosphere reflectance} $\rho(\lambda)$
@@ -714,7 +714,7 @@ yshift=\s*\i,every node/.append style={
 	\Large
 	\textbf{Takeaway:} 
 	\begin{itemize}
-		\item Models quite similar.
+		\item Models perform quite similar
 		\item Potential for improvement
 		\item well-defined classes accurately classified
 		\item broadly defined classes systematically confused
@@ -761,7 +761,7 @@ yshift=\s*\i,every node/.append style={
 \end{frame}
 
 \begin{frame}
-\frametitle{Challenges and Impact}
+\frametitle{Summary}
 
 \Large
 
@@ -770,33 +770,42 @@ yshift=\s*\i,every node/.append style={
 \column{.5\textwidth}
 
 \visible<1->{
-	\textbf{Impact}
+%	\textbf{Impact}
+%	\vspace{1em}
+%	
+%	\begin{description}[itemsep=.5em]
+%		\item large scale \textbf{real-world dataset}
+%		\item effectively \textbf{unlimited data} (spatially and temporally)
+%		\item \textbf{assessing generalization} over large regions
+%		\item potential for further \textbf{vegetation characteristics} (drought indicator, early classification, crop yield)
+%	\end{description}
+	\textbf{Summary}
 	\vspace{1em}
-	
-	\begin{description}[itemsep=.5em]
-		\item large scale \textbf{real-world dataset}
-		\item effectively \textbf{unlimited data} (spatially and temporally)
-		\item \textbf{assessing generalization} over large regions
-		\item potential for further \textbf{vegetation characteristics} (drought indicator, early classification, crop yield)
-	\end{description}
+
+	\begin{itemize}[itemsep=.5em]
+	\item<1-> we gathered, compiled, harmonized a \textbf{large supervised classification dataset} (20 Gb of data) for crop type mapping
+	\item<2-> we \textbf{prove the feasibility} of classification with two deep neural network classifiers (LSTM and Transformer)
+	\item<3-> baslines \textbf{leave potential} \textbf{for improvement} by future research
+\end{itemize}
+
+
 }
 
 \column{.5\textwidth}
 
-\visible<2->{
 	\textbf{Challenges}
 	\vspace{1em}
 	
 	\begin{description}[itemsep=.5em]
-		\item \textbf{Imbalanced} class \textbf{labels}
-		\item Classes with \textbf{similar characteristics}
-		\item Non-Gaussian noise induced by \textbf{clouds}
-		\item \textbf{Regional} \textbf{variations} in the class distributions
-		\item \textbf{Spatial} \textbf{autocorrelation}
-		\item \textbf{Irregular} temporal \textbf{sampling} distance
-		\item \textbf{Variable} \textbf{sequence} length
+		\item<4-> \textbf{Imbalanced} class \textbf{labels}
+		\item<5-> Classes with \textbf{similar characteristics}
+		\item<6-> Non-Gaussian noise induced by \textbf{clouds}
+		\item<7-> \textbf{Regional} \textbf{variations} in the class distributions
+		\item<8-> \textbf{Spatial} \textbf{autocorrelation}
+		\item<9-> \textbf{Irregular} temporal \textbf{sampling} distance
+		\item<10-> \textbf{Variable} \textbf{sequence} length
 	\end{description}
-}
+
 
 
 \end{columns}
@@ -804,21 +813,36 @@ yshift=\s*\i,every node/.append style={
 \end{frame}
 
 \begin{frame}
-	\frametitle{Summary}
+	\frametitle{Takeaway and Feedback}
 	
 	\Large
 	
-	\begin{itemize}[itemsep=.5em]
-	\item<1-> we gathered, compiled, harmonized a \textbf{large supervised classification dataset} (580k examples in 20 Gb of data) for crop type mapping
-	\item<2-> it poses a series of \textbf{real-world challenges} to the time series researchers.
-	\item<3-> it is structured \textbf{following administrative boundaries} and \textbf{can be augmented} by \textbf{more regions} or \textbf{additional statistical data} from Eurostat.
-	\item<4-> we \textbf{prove the feasibility} of classification with two deep neural network classifiers
-	\item<5-> results form a \textbf{baseline}, but \textbf{leave potential} \textbf{for improvement} by future research
-	\item<6-> we \textbf{publish dataset}, and \textbf{source code} to the baseline models on \textbf{Github}
-	\end{itemize}
+	We hope to have given an \textbf{overview over the problem space} of the problem space of multi-temporal \textbf{Earth observation}.
+	
+	\vspace{2em}
+	
+	We warmly welcome \textbf{feedback and suggestions} as questions or as discussion at the poster
 	
 	
 \end{frame}
+
+%
+%\begin{frame}
+%	\frametitle{Summary}
+%	
+%	\Large
+%	
+%	\begin{itemize}[itemsep=.5em]
+%	\item<1-> we gathered, compiled, harmonized a \textbf{large supervised classification dataset} (20 Gb of data) for crop type mapping
+%	\item<2-> it poses a series of \textbf{real-world challenges} to the time series researchers.
+%	\item<3-> it is structured \textbf{following administrative boundaries} and \textbf{can be augmented} by \textbf{more regions} or \textbf{additional statistical data} from Eurostat.
+%	\item<4-> we \textbf{prove the feasibility} of classification with two deep neural network classifiers
+%	\item<5-> results form a \textbf{baseline}, but \textbf{leave potential} \textbf{for improvement} by future research
+%	\item<6-> we \textbf{publish dataset}, and \textbf{source code} to the baseline models on \textbf{Github}
+%	\end{itemize}
+%	
+%	
+%\end{frame}
 
 \begin{frame}
 	\frametitle{Thank you}

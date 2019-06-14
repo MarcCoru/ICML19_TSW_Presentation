@@ -1,7 +1,7 @@
 \tikzsetnextfilename{example}
 
 %\newcommand{\wv}[2]{$\lambda_\text{#1}=#2$}
-\newcommand{\wv}[2]{$\rho_\text{#1}$}
+\newcommand{\wv}[2]{$\rho_\text{#2}$}
 
 
 \newcommand{\examplemeadows}{
@@ -23,7 +23,7 @@ xmax=2017-12-31,
 ylabel near ticks,
 ylabel style={font=\sffamily\small, rotate=0, yshift=-.5em},
 width=.95\linewidth,
-height=3cm,
+height=5cm,
 axis x line=bottom,
 axis y line=left,
 %	enlarge x limits=0.01,
@@ -37,10 +37,10 @@ no marks,
 ylabel={$\rho \times 10^4$},
 draw opacity=.8,
 %		tension=0.001,
-legend columns=5,
+legend columns=8,
 %y tick label style={rotate=90},
 %legend to name=leg,
-legend style={at={(.5,1.1)},anchor=south, line width=1pt, fill=tumblue!10,font=\tiny}
+legend style={at={(.5,1.1)},anchor=south, line width=1pt, fill=tumblue!10}
 ]
 
 %\addlegendimage{empty legend}
@@ -99,7 +99,7 @@ legend style={at={(.5,1.1)},anchor=south, line width=1pt, fill=tumblue!10,font=\
 \end{axis}
 
 
-\node[font=\scriptsize\sffamily, anchor=west] at (0.2,2.7) {Sentinel 2 Satellite Spectral Bands};
+%\node[font=\scriptsize\sffamily, anchor=west] at (0.2,2.7) {Sentinel 2 Satellite Spectral Bands};
 
 
 \end{tikzpicture}
@@ -124,7 +124,7 @@ legend style={at={(.5,1.1)},anchor=south, line width=1pt, fill=tumblue!10,font=\
 	ylabel near ticks,
 	ylabel style={font=\sffamily\small, rotate=0, yshift=-.5em},
 	width=.95\linewidth,
-	height=6cm,
+	height=5cm,
 	axis x line=bottom,
 	axis y line=left,
 	%	enlarge x limits=0.01,
@@ -138,9 +138,9 @@ legend style={at={(.5,1.1)},anchor=south, line width=1pt, fill=tumblue!10,font=\
 	ylabel={$\rho \times 10^4$},
 	draw opacity=.8,
 	%		tension=0.001,
-	legend columns=2,
+	legend columns=8,
 	%y tick label style={rotate=90},
-	legend style={at={(.5,1)},anchor=south, line width=1pt, fill=tumblue!10, font=\tiny}
+	legend style={at={(.5,1)},anchor=south, line width=1pt, fill=tumblue!10}
 	]
 	
 	
@@ -174,6 +174,21 @@ legend style={at={(.5,1.1)},anchor=south, line width=1pt, fill=tumblue!10,font=\
 	
 %	\legend{3 atmospheric, 2 short-wave infrared, 5 near infrared, 3 visible bands}
 %	
+	
+	\addlegendentry{\wv{B01}{443nm}}
+	\addlegendentry{\wv{B2}{492nm}}
+	\addlegendentry{\wv{B3}{560nm}}
+	\addlegendentry{\wv{B4}{665nm}}
+	\addlegendentry{\wv{B5}{704nm}}
+	\addlegendentry{\wv{B6}{740nm}}
+	\addlegendentry{\wv{B7}{783nm}}
+	\addlegendentry{\wv{B8}{833nm}}
+	\addlegendentry{\wv{B8A}{864nm}}
+	\addlegendentry{\wv{B9}{945nm}}
+	\addlegendentry{\wv{B10}{1374nm}}
+	\addlegendentry{\wv{B12}{2202nm}}
+	
+
 	\end{axis}
 	
 	\end{tikzpicture}

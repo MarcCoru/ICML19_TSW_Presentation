@@ -55,70 +55,6 @@ IRISA-Obelix, University of South Brittany\footnotemark[2]}
 \titlepage
 \end{frame}
 
-
-\begin{frame}
-\frametitle{Two Research Fields}
-\centering
-\begin{tikzpicture}[xscale=3.5, yscale=2]
-%\draw[fill=tumblue, draw=none, opacity=0.5](-1,0) circle (1.5);
-\node[fill=tumbluelight, draw=none, opacity=0.5, circle, minimum width=6cm, text opacity=1, font=\Large\bfseries] at (-1,0){Earth Observation};
-
-\node[fill=tumorange!50, draw=none, opacity=0.5, circle, minimum width=6cm, text opacity=1, font=\Large\bfseries] at (1,0){Machine Learning};
-%\draw[fill=tumorange, draw=none, opacity=0.5](1,0) circle (1.5);
-
-%\node at (-1.3,1){Data};
-%
-%\node[text width=3.5cm] at (-1,.9){\focusmethod is a \textbf{tool} for our \focusdata};
-%\node[text width=3.5cm] at (1,.9){\focusdata is a \textbf{benchmark} for our \focusmethod};
-%
-%
-%\node[text width=3.5cm] at (-1,.3){\textbf{should generalize} to applications of a \\ specific sub-field};
-%\node[text width=3.5cm] at (1,.3){\textbf{must generalize} to many fields of applications};
-%
-%\node[text width=3.5cm] at (-1,-.3){data has specific \\ \textbf{phyisical properties}};
-%\node[text width=3.5cm] at (1,-.3){data is a \textbf{feature vector}};
-%
-%\node[text width=2cm] at (-1.3,-.6){{physics}, {sensors}, {applications}};
-
-%\node at (1.3,1){Method};
-
-%\node at (-1.3,1){IGARSS};
-%\node at (-1.6,-1){ISPRS};
-%\node at (-1.2,-.6){IEEE-GRSS};
-%\node at (-1.8,.4){MDPI-RS Journal};
-%\node at (-1.3,0){RSE Journal};
-%
-%\node at (1.3,1){NeurIPS};
-%\node at (1.6,-1){CVPR};
-%\node at (1.2,-.6){ICML};
-%\node at (1.8,.4){ECCV};
-%\node at (1.3,.2){ECML};
-%
-%\node at (0,.5){CVPR EarthVision};
-%\node at (0,0){ECML MACLEAN};
-%\node at (0,-.5){(ESA-$\Phi$-week)};
-
-\end{tikzpicture}
-
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Common Datasets}
-\centering
-\begin{tikzpicture}[scale=2]
-%\draw[fill=tumblue, draw=none, opacity=0.5](-1,0) circle (1.5);
-\node[fill=tumbluelight, draw=none, opacity=0.5, circle, minimum width=6cm, label=Earth Observation] at (-.8,0){};
-
-\node[fill=tumorange!50, draw=none, opacity=0.5, circle, minimum width=6cm, label=Machine Learning] at (.8,0){};
-%\draw[fill=tumorange, draw=none, opacity=0.5](1,0) circle (1.5);
-
-\node[font=\Large\bfseries, text width=2cm] at (0,0) {Common Datasets};
-
-\end{tikzpicture}
-\end{frame}
-
-
 {\setbeamercolor{background canvas}{bg=tumbluedark}
 	\begin{frame}[plain]
 	
@@ -253,60 +189,6 @@ IRISA-Obelix, University of South Brittany\footnotemark[2]}
 	
 \end{tikzpicture}
 \end{columns}
-\end{frame}
-
-\begin{frame}
-\frametitle{Sentinel 2: Satellite Time Series $\M{X} = (\V{x}_1,\V{x}_2,\dots,\V{x}_N)$}
-
-\begin{columns}
-	
-	
-	\column{.5\textwidth}
-	
-	\includegraphics[width=\textwidth]{images/sentinel2}
-	
-	\column{.5\textwidth}
-	
-	
-	
-	
-	\begin{equation*}
-	\V{x}_t = \begin{pmatrix}
-	\rho_{UV} \\ 
-	\rho_{Blue} \\
-	\rho_{Green} \\
-	\rho_{Red} \\
-	\rho_{NIR} \\
-	\rho_{NIR} \\
-	\rho_{NIR} \\
-	\rho_{NIR} \\
-	\rho_{NIR} \\
-	\rho_{SWIR} \\
-	\rho_{SWIR} \\
-	\rho_{SWIR} \\
-	\rho_{SWIR}
-	\end{pmatrix}
-	%	\begin{matrix}
-	%%	\leftarrow \text{ultra-violett} \\ 
-	%%	\leftarrow \text{blue} \\
-	%%	\leftarrow \text{green} \\
-	%%	\leftarrow \text{red} \\
-	%%	\leftarrow \text{near infrared} \\
-	%%	\leftarrow \text{near infrared} \\
-	%%	\leftarrow \text{near infrared} \\
-	%%	\leftarrow \text{near infrared} \\
-	%%	\leftarrow \text{near infrared} \\
-	%%	\leftarrow \text{water vapour} \\
-	%%	\leftarrow \text{detect cirrus clouds} \\
-	%%	\leftarrow \text{short-wave infrared} \\
-	%%	\leftarrow \text{short-wave infrared}
-	%%\multirow{3}{c}{\overbrace{\rule{1.5cm}{0pt}}^{N(k,d)-d}}
-	%\multirow{5}{*}{fractionals}
-	%	\end{matrix}
-	\end{equation*}
-	\small UV=ultra-violet, NIR=near infra-red, SWIR=short-wave infra-red
-\end{columns}
-
 \end{frame}
 
 \begin{frame}
@@ -633,10 +515,6 @@ yshift=\s*\i,every node/.append style={
 	\examplecorn
 \end{frame}
 
-\begin{frame}
-\frametitle{Meadow Example}
-\examplemeadows
-\end{frame}
 %
 %\begin{frame}
 %\frametitle{Examples}
@@ -818,7 +696,7 @@ yshift=\s*\i,every node/.append style={
 	
 	\Large
 	
-	We hope to have given an \textbf{overview over the problem space} of the problem space of multi-temporal \textbf{Earth observation}.
+	We hope to have given an \textbf{overview over the problem space} of multi-temporal \textbf{Earth observation}.
 	
 	\vspace{2em}
 	
@@ -1167,6 +1045,132 @@ Summary and Outlook
 %	6{\text{CO}}_{2}+6{\text{H}}_{2}\text{O}\to 
 %	\end{equation*}
 \end{frame}
+
+
+\begin{frame}
+\frametitle{Meadow Example}
+\examplemeadows
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Sentinel 2: Satellite Time Series $\M{X} = (\V{x}_1,\V{x}_2,\dots,\V{x}_N)$}
+
+\begin{columns}
+	
+	
+	\column{.5\textwidth}
+	
+	\includegraphics[width=\textwidth]{images/sentinel2}
+	
+	\column{.5\textwidth}
+	
+	
+	
+	
+	\begin{equation*}
+	\V{x}_t = \begin{pmatrix}
+	\rho_{UV} \\ 
+	\rho_{Blue} \\
+	\rho_{Green} \\
+	\rho_{Red} \\
+	\rho_{NIR} \\
+	\rho_{NIR} \\
+	\rho_{NIR} \\
+	\rho_{NIR} \\
+	\rho_{NIR} \\
+	\rho_{SWIR} \\
+	\rho_{SWIR} \\
+	\rho_{SWIR} \\
+	\rho_{SWIR}
+	\end{pmatrix}
+	%	\begin{matrix}
+	%%	\leftarrow \text{ultra-violett} \\ 
+	%%	\leftarrow \text{blue} \\
+	%%	\leftarrow \text{green} \\
+	%%	\leftarrow \text{red} \\
+	%%	\leftarrow \text{near infrared} \\
+	%%	\leftarrow \text{near infrared} \\
+	%%	\leftarrow \text{near infrared} \\
+	%%	\leftarrow \text{near infrared} \\
+	%%	\leftarrow \text{near infrared} \\
+	%%	\leftarrow \text{water vapour} \\
+	%%	\leftarrow \text{detect cirrus clouds} \\
+	%%	\leftarrow \text{short-wave infrared} \\
+	%%	\leftarrow \text{short-wave infrared}
+	%%\multirow{3}{c}{\overbrace{\rule{1.5cm}{0pt}}^{N(k,d)-d}}
+	%\multirow{5}{*}{fractionals}
+	%	\end{matrix}
+	\end{equation*}
+	\small UV=ultra-violet, NIR=near infra-red, SWIR=short-wave infra-red
+\end{columns}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Two Research Fields}
+\centering
+\begin{tikzpicture}[xscale=3.5, yscale=2]
+%\draw[fill=tumblue, draw=none, opacity=0.5](-1,0) circle (1.5);
+\node[fill=tumbluelight, draw=none, opacity=0.5, circle, minimum width=6cm, text opacity=1, font=\Large\bfseries] at (-1,0){Earth Observation};
+
+\node[fill=tumorange!50, draw=none, opacity=0.5, circle, minimum width=6cm, text opacity=1, font=\Large\bfseries] at (1,0){Machine Learning};
+%\draw[fill=tumorange, draw=none, opacity=0.5](1,0) circle (1.5);
+
+%\node at (-1.3,1){Data};
+%
+%\node[text width=3.5cm] at (-1,.9){\focusmethod is a \textbf{tool} for our \focusdata};
+%\node[text width=3.5cm] at (1,.9){\focusdata is a \textbf{benchmark} for our \focusmethod};
+%
+%
+%\node[text width=3.5cm] at (-1,.3){\textbf{should generalize} to applications of a \\ specific sub-field};
+%\node[text width=3.5cm] at (1,.3){\textbf{must generalize} to many fields of applications};
+%
+%\node[text width=3.5cm] at (-1,-.3){data has specific \\ \textbf{phyisical properties}};
+%\node[text width=3.5cm] at (1,-.3){data is a \textbf{feature vector}};
+%
+%\node[text width=2cm] at (-1.3,-.6){{physics}, {sensors}, {applications}};
+
+%\node at (1.3,1){Method};
+
+%\node at (-1.3,1){IGARSS};
+%\node at (-1.6,-1){ISPRS};
+%\node at (-1.2,-.6){IEEE-GRSS};
+%\node at (-1.8,.4){MDPI-RS Journal};
+%\node at (-1.3,0){RSE Journal};
+%
+%\node at (1.3,1){NeurIPS};
+%\node at (1.6,-1){CVPR};
+%\node at (1.2,-.6){ICML};
+%\node at (1.8,.4){ECCV};
+%\node at (1.3,.2){ECML};
+%
+%\node at (0,.5){CVPR EarthVision};
+%\node at (0,0){ECML MACLEAN};
+%\node at (0,-.5){(ESA-$\Phi$-week)};
+
+\end{tikzpicture}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Common Datasets}
+\centering
+\begin{tikzpicture}[scale=2]
+%\draw[fill=tumblue, draw=none, opacity=0.5](-1,0) circle (1.5);
+\node[fill=tumbluelight, draw=none, opacity=0.5, circle, minimum width=6cm, label=Earth Observation] at (-.8,0){};
+
+\node[fill=tumorange!50, draw=none, opacity=0.5, circle, minimum width=6cm, label=Machine Learning] at (.8,0){};
+%\draw[fill=tumorange, draw=none, opacity=0.5](1,0) circle (1.5);
+
+\node[font=\Large\bfseries, text width=2cm] at (0,0) {Common Datasets};
+
+\end{tikzpicture}
+\end{frame}
+
+
 
 \end{document}
 
